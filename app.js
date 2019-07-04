@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const HomeController = require('./controllers/HomeController');
 const UserController = require('./controllers/UserController');
 
+const DemoService = require('./services/DemoService');
+
 
 const init = async () => {
     let serverPort = process.env.PORT || 3000;
@@ -18,10 +20,22 @@ const init = async () => {
     HomeController.register(server);
     UserController.register(server);
 
+    initMongo();
+
+    //Run Demo
+    DemoService.init();
+
+    await server.start();
+    console.log('Server running on %s', server.info.uri);
+};
+
+
+const initMongo = function(){
     //MongodDB
     let mongoDbHost = process.env.MONGODB_HOST || 'localhost';
     let mongoDbPort = process.env.MONGODB_PORT || '27017';
     let mongoDbDatabase = process.env.MONGODB_DATABASE || 'users-dev';
+
     // MongoDB: Setup new features
     mongoose.set('useNewUrlParser', true);
     mongoose.set('useFindAndModify', false);
@@ -39,10 +53,6 @@ const init = async () => {
 
 
     console.log('MongoDB: ' + mongoDB);
-
-
-    await server.start();
-    console.log('Server running on %s', server.info.uri);
 };
 
 process.on('unhandledRejection', (err) => {
