@@ -1,5 +1,5 @@
 # This file is a template, and might need editing before it works on your project.
-FROM node:8.11-alpine
+FROM node:10.16-alpine
 
 WORKDIR /usr/src/app
 
@@ -11,7 +11,7 @@ ENV PORT 1337
 
 ENV MONGODB_HOST 172.17.0.1
 ENV MONGODB_PORT 27017
-ENV MONGODB_DATABASE "geo-objects-dev"
+ENV MONGODB_DATABASE "users-dev"
 
 COPY package.json /usr/src/app/
 RUN npm install
