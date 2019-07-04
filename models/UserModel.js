@@ -18,7 +18,7 @@ UserSchema.set('toJSON', {
         delete ret.__v;
         delete ret._class;
         delete ret.password;
-        delete ret.base;
+        delete ret.basic;
     }
 });
 

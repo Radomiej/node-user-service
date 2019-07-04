@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const HomeController = require('./controllers/HomeController');
 const UserController = require('./controllers/UserController');
+const AuthorizeController = require('./controllers/AuthorizeController');
 
 const DemoService = require('./services/DemoService');
 
@@ -19,6 +20,7 @@ const init = async () => {
 
     HomeController.register(server);
     UserController.register(server);
+    AuthorizeController.register(server);
 
     initMongo();
 

@@ -33,6 +33,8 @@ exports.addOne = function (userForm) {
     user.login = userForm.login;
     user.password = userForm.password;
     user.basic = makeBaseAuth(user.login, user.password);
+    user.roles = userForm.roles;
+
     console.log('basic: ' + user.basic);
 
     user.save(function (err) {

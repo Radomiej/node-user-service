@@ -19,7 +19,8 @@ exports.init = function () {
 function addDemoUsers() {
     let adminUser = {
         login: "admin",
-        password: "admin"
+        password: "admin",
+        roles: ['admin', 'user', 'manager']
     };
 
     UserService.addOne(adminUser);
